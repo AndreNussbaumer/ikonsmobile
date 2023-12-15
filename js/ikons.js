@@ -56,6 +56,18 @@ class Ikon {
       }
     })
   }
+
+  shoot() {
+
+    if(this.shooting){
+      lasers.push(new Falcon(this.pos.x, this.pos.y, this.angle, this.id))
+    }
+
+    this.shooting = false
+
+  }
+
+
 }
 
 let Hero = new Ikon(510, 210, 40, 20)

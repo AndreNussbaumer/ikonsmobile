@@ -19,3 +19,9 @@ body {
   background-color: black;
   transform: scale(1);
 }
+
+#toggle {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+}
