@@ -1,0 +1,21 @@
+html {
+  overflow: hidden;
+}
+
+
+body {
+  margin: 0;
+  top: 0;
+  left: 0;
+  outline: none;
+  overflow: hidden;
+}
+
+#canvas {
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  outline: none;
+  background-color: black;
+  transform: scale(1);
+}
