@@ -86,22 +86,11 @@ class Joystick {
 }
 
 let positionJoystick = window.innerWidth / 9
-let positionJoyLeft = window.innerHeight / 1.3
-
-
-let joystick = new Joystick(positionJoystick, positionJoyLeft, 20)
-
+let positionJoyLeft = window.innerHeight / 1.2
 
 let ratio = window.innerHeight / window.innerWidth
 
-function stickyJoy() {
-
-
-
-
-}
-
-stickyJoy()
+let joystick = new Joystick(positionJoystick, positionJoyLeft, 20)
 
 function boundingCircle() {
 
