@@ -85,8 +85,8 @@ class Joystick {
 
 }
 
-let positionJoystick = window.innerWidth / 9.5
-let positionJoyLeft = window.innerHeight / 1.1
+let positionJoystick = window.innerWidth / 9.1
+let positionJoyLeft = window.innerHeight / 1.11
 
 let ratio = window.innerHeight / window.innerWidth
 
