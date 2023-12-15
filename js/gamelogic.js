@@ -1,11 +1,11 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-console.log(canvas.getBoundingClientRect().bottom)
+
 
 // GLOBAL VARIABLES
 
-let friction = 0.05
+let friction = 0.07
 
 // Collision detection
 

@@ -85,17 +85,20 @@ class Joystick {
 
 }
 
-let joystick = new Joystick(100, 280, 20)
+let positionJoystick = window.innerWidth / 9
+let positionJoyLeft = window.innerHeight / 1.3
 
-let ratio = canvas.width / canvas.height
+
+let joystick = new Joystick(positionJoystick, positionJoyLeft, 20)
+
+
+let ratio = window.innerHeight / window.innerWidth
 
 function stickyJoy() {
-  // responsive Joystick position
-  joystick.x = canvas.width / ratio
-  joystick.X = canvas.width / ratio
 
-  joystick.y = canvas.height - 150 / ratio
-  joystick.Y = canvas.height - 150 / ratio
+
+
+
 }
 
 stickyJoy()
