@@ -4,6 +4,7 @@ let angle = 0
 
 let mobileX
 let mobileY
+
 // KEYBOARD
 
 canvas.addEventListener('keydown', (e) => {
@@ -163,6 +164,8 @@ let touchStarting = false
 
 canvas.addEventListener('touchstart', (e) => {
 
+  mobileX = e.touches[0].clientX
+  mobileY = e.touches[0].clientY
 
   touchStarting = true
 
@@ -173,22 +176,12 @@ canvas.addEventListener('touchstart', (e) => {
 
     boundingCircle()
 
-  } else {
-
-    mobileX = e.touches[0].clientX
-    mobileY = e.touches[0].clientY
-
-    if(getDistance(mobileButtons) < 50){
-      Hero.shooting = true
-    }
-
-
-    joystick.x = joystick.X
-    joystick.y = joystick.Y
-    joystick.dx = 0
-    joystick.dy = 0
-
   }
+
+  if(getDistance(mobileButtons) < 50){
+    Hero.shooting = true
+  }
+
 
 })
 
@@ -201,13 +194,6 @@ canvas.addEventListener('touchmove', (e) => {
     joystick.y = e.changedTouches[0].clientY
 
     boundingCircle()
-
-  } else {
-
-    joystick.x = joystick.X
-    joystick.y = joystick.Y
-    joystick.dx = 0
-    joystick.dy = 0
 
   }
 
