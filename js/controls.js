@@ -159,10 +159,13 @@ let positionButtonsRight = window.innerHeight / 1.02
 
 let mobileButtons = new MobileButtons(positionButtons, positionButtonsRight, 50)
 
+let touchEvent
 
 let touchStarting = false
 
 canvas.addEventListener('touchstart', (e) => {
+
+  touchEvent = e.touches[0].clientX
 
   mobileX = e.touches[0].clientX
   mobileY = e.touches[0].clientY
@@ -188,25 +191,26 @@ canvas.addEventListener('touchstart', (e) => {
 
 canvas.addEventListener('touchmove', (e) => {
 
-  if(e.touches[0].clientX < 400){
+   joystick.x = e.changedTouches[0].clientX
+   joystick.y = e.changedTouches[0].clientY
 
-    joystick.x = e.changedTouches[0].clientX
-    joystick.y = e.changedTouches[0].clientY
-
-    boundingCircle()
-
-  }
+   boundingCircle()
 
 })
 
 canvas.addEventListener('touchend', (e) => {
 
-  touchStarting = false
+  if(touchEvent < screen.width / 2){
 
-  joystick.x = joystick.X
-  joystick.y = joystick.Y
-  joystick.dx = 0
-  joystick.dy = 0
+    touchStarting = false
+
+    joystick.x = joystick.X
+    joystick.y = joystick.Y
+    joystick.dx = 0
+    joystick.dy = 0
+
+  }
+
 
 })
 
