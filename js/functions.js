@@ -21,3 +21,7 @@ function getDistance(pt1) {
   let pos = { x: mobileX, y: mobileY }
   return Math.sqrt(Math.pow(pt1.x - pos.x, 2) + Math.pow(pt1.y - pos.y, 2))
 }
+
+function shoot() {
+  Hero.shooting = true
+}

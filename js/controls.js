@@ -150,6 +150,7 @@ class MobileButtons {
 
   }
 
+
 }
 
 let positionButtons = window.innerWidth / 1.15
@@ -224,7 +225,7 @@ canvas.addEventListener('touchend', (e) => {
 })
 
 canvas.oncontextmenu = function(e) {
-   //e.preventDefault(); e.stopPropagation();
+   e.preventDefault(); e.stopPropagation();
 }
 
 canvas.addEventListener('mousedown', function(e) {
