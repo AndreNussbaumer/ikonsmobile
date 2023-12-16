@@ -52,7 +52,6 @@ canvas.addEventListener('keyup', (e) => {
     }
 
     if(e.keyCode === 32){
-
         SPACE = false
     }
 
@@ -163,6 +162,10 @@ let touchEvent
 
 let touchStarting = false
 
+canvas.addEventListener('click', (e) => {
+  e.preventDefault()
+})
+
 canvas.addEventListener('touchstart', (e) => {
 
   touchEvent = e.touches[0].clientX
@@ -181,10 +184,11 @@ canvas.addEventListener('touchstart', (e) => {
 
     console.log('touched')
 
+  } else if(e.touches[0].clientX > screen.width / 2){
+    e.preventDefault()
   }
 
   if(e.touches[0].clientX > screen.width / 2){
-
     if(getDistance(mobileButtons) < 50){
       Hero.shooting = true
 
@@ -197,6 +201,10 @@ canvas.addEventListener('touchmove', (e) => {
 
   if(e.touches[0].clientX < screen.width / 2){
 
+    e.preventDefault()
+
+    console.log(e.touches[0].clientX)
+
     joystick.x = e.changedTouches[0].clientX
     joystick.y = e.changedTouches[0].clientY
 
@@ -204,6 +212,7 @@ canvas.addEventListener('touchmove', (e) => {
     console.log('moved')
 
   }
+
 
 })
 
@@ -240,6 +249,7 @@ canvas.addEventListener('mouseup', function(e) {
   if(e.button === 1 ) {
     LEFTCLICK = false
   }
+
 })
 
 canvas.addEventListener('mousemove', (event) => {
