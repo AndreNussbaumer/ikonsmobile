@@ -4,35 +4,77 @@ let ikons = []
 class Ikon {
 
   constructor(x, y, r, m) {
+
     this.pos = new Vector(x,y)
     this.acc = new Vector(0,0)
     this.vel = new Vector(0,0)
     this.r = r
     this.m = m; if(this.m === 0){ this.inv_m = 0 } else { this.inv_m = 1 / this.m; }
     this.elasticity = 1
-    this.acceleration = 1
+    this.acceleration = 0.7
+    this.angle = 0
+    this.stickAngle = 0
     ikons.push(this)
+
   }
 
   drawIkon() {
+
     ctx.beginPath();
     ctx.arc(this.pos.x, this.pos.y, this.r, 0, 2 * Math.PI)
-    ctx.fillStyle = "red"
+    ctx.fillStyle = "green"
     ctx.fill()
+
   }
 
   controls() {
+
     // joystick
 
-    if(touchStarting){
-      this.acc.x = this.acceleration * joystick.dx
-      this.acc.y = this.acceleration * joystick.dy
+    if(mobile){
+
+      if(touchStarting){
+        this.acc.x = this.acceleration * joystick.dx
+        this.acc.y = this.acceleration * joystick.dy
+      }
+
+      if(!touchStarting){
+        this.acc.y = 0
+        this.acc.x = 0
+      }
+
+      } else {
+
+      if(LEFT){
+        this.acc.x =- this.acceleration
+      }
+
+      if(UP){
+        this.acc.y =- this.acceleration
+      }
+
+      if(RIGHT){
+        this.acc.x = this.acceleration
+      }
+
+      if(DOWN){
+        this.acc.y = this.acceleration
+      }
+
+      if(!LEFT && !RIGHT){
+          this.acc.x = 0;
+      }
+
+      if(!UP && !DOWN){
+          this.acc.y = 0;
+      }
     }
 
-    if(!touchStarting){
-      this.acc.y = 0
-      this.acc.x = 0
-    }
+
+    // keyboard
+
+
+
   }
 
   updatePosition() {
@@ -57,10 +99,20 @@ class Ikon {
     })
   }
 
+  direction() {
+
+    let opposite = angle.y - this.pos.y
+    let adjacent = angle.x - this.pos.x
+
+    this.angle = Math.atan2(opposite, adjacent)
+
+    this.stickAngle = Math.atan2(this.vel.y, this.vel.x)
+  }
+
   shoot() {
 
     if(this.shooting){
-      lasers.push(new Falcon(this.pos.x, this.pos.y, this.angle, this.id))
+      lasers.push(new Lasers(this.pos.x, this.pos.y, this.stickAngle))
     }
 
     this.shooting = false
@@ -70,7 +122,7 @@ class Ikon {
 
 }
 
-let Hero = new Ikon(510, 210, 40, 20)
+let Hero = new Ikon(510, 210, 20, 10)
 
 let antiHero = new Ikon(630, 230, 20, 10)
 
@@ -82,6 +134,8 @@ function heroFunctions() {
     ikon.drawIkon()
     ikon.collisions()
     ikon.updatePosition()
+    ikon.direction()
+    ikon.shoot()
   })
 
   Hero.controls()

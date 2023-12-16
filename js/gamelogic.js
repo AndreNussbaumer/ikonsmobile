@@ -1,11 +1,15 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-
+if(screen.width <= 900){
+  mobile = true
+} else {
+  mobile = false
+}
 
 // GLOBAL VARIABLES
 
-let friction = 0.07
+let friction = 0.1
 
 // Collision detection
 

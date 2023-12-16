@@ -3,6 +3,8 @@ function mainLoop() {
   responsiveCanvas()
   heroFunctions()
   joystick.draw()
+  mobileButtons.draw()
+  laserUpdate()
   requestAnimationFrame(mainLoop)
 }
 
