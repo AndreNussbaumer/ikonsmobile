@@ -107,6 +107,7 @@ class Ikon {
     this.angle = Math.atan2(opposite, adjacent)
 
     this.stickAngle = Math.atan2(this.vel.y, this.vel.x)
+
   }
 
   shoot() {
