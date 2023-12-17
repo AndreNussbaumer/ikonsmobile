@@ -162,63 +162,48 @@ let touchEvent
 
 let touchStarting = false
 
-canvas.addEventListener('click', (e) => {
-  e.preventDefault()
-})
-
 canvas.addEventListener('touchstart', (e) => {
 
-  touchEvent = e.touches[0].clientX
-
-  mobileX = e.touches[0].clientX
-  mobileY = e.touches[0].clientY
-
-  touchStarting = true
+  if(e.touches){
+    if(e.touches[0]){
+      if(e.touches[1]){
+        mobileX = e.touches[1].clientX
+        mobileY = e.touches[1].clientY
+        if(getDistance(mobileButtons) < 50){
+          Hero.shooting = true
+        }
+      }
+    }
+  }
 
   if(e.touches[0].clientX < screen.width / 2){
+
+    touchStarting = true
 
     joystick.x = e.touches[0].clientX
     joystick.y = e.touches[0].clientY
 
     boundingCircle()
-
-    console.log('touched')
-
-  } else if(e.touches[0].clientX > screen.width / 2){
-    e.preventDefault()
   }
 
-  if(e.touches[0].clientX > screen.width / 2){
-    if(getDistance(mobileButtons) < 50){
-      Hero.shooting = true
-
-    }
-  }
 })
 
 
 canvas.addEventListener('touchmove', (e) => {
 
-  if(e.touches[0].clientX < screen.width / 2){
-
-    e.preventDefault()
-
-    console.log(e.touches[0].clientX)
+  if(e.changedTouches[0].clientX < screen.width / 2){
 
     joystick.x = e.changedTouches[0].clientX
     joystick.y = e.changedTouches[0].clientY
 
     boundingCircle()
-    console.log('moved')
-
   }
-
 
 })
 
 canvas.addEventListener('touchend', (e) => {
 
-  if(touchEvent < screen.width / 2){
+  if(e.changedTouches[0].clientX < screen.width / 2){
 
     touchStarting = false
 
@@ -226,10 +211,8 @@ canvas.addEventListener('touchend', (e) => {
     joystick.y = joystick.Y
     joystick.dx = 0
     joystick.dy = 0
-    console.log('ended')
+
   }
-
-
 })
 
 canvas.oncontextmenu = function(e) {
