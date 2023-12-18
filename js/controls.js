@@ -164,6 +164,27 @@ let touchStarting = false
 
 canvas.addEventListener('touchstart', (e) => {
 
+  if(e.touches[0].clientX < screen.width / 2){
+
+    touchStarting = true
+
+    joystick.x = e.touches[0].clientX
+    joystick.y = e.touches[0].clientY
+
+    boundingCircle()
+  }
+
+  if(e.touches[1].clientX < screen.width / 2){
+
+    touchStarting = true
+
+    joystick.x = e.touches[0].clientX
+    joystick.y = e.touches[0].clientY
+
+    boundingCircle()
+  }
+
+
   if(e.touches){
     if(e.touches[0]){
       if(e.touches[1]){
@@ -176,21 +197,14 @@ canvas.addEventListener('touchstart', (e) => {
     }
   }
 
-  if(e.touches[0].clientX < screen.width / 2){
-
-    touchStarting = true
-
-    joystick.x = e.touches[0].clientX
-    joystick.y = e.touches[0].clientY
-
-    boundingCircle()
-  }
 
   if(e.touches[0].clientX > screen.width / 2){
     if(getDistance(mobileButtons) < 50){
       Hero.shooting = true
     }
   }
+
+
 
 
 
