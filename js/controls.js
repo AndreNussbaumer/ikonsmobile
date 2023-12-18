@@ -187,7 +187,7 @@ canvas.addEventListener('touchstart', (e) => {
 
   if(e.touches){
     if(e.touches[0]){
-      if(e.touches[1]){
+      if(e.touches[1].clientX > screen.width / 2){
         mobileX = e.touches[1].clientX
         mobileY = e.touches[1].clientY
         if(getDistance(mobileButtons) < 50){
