@@ -176,12 +176,6 @@ canvas.addEventListener('touchstart', (e) => {
     }
   }
 
-  if(e.touches[0].clientX > screen.width / 2){
-    if(getDistance(mobileButtons) < 50){
-      Hero.shooting = true
-    }
-  }
-
   if(e.touches[0].clientX < screen.width / 2){
 
     touchStarting = true
@@ -191,6 +185,14 @@ canvas.addEventListener('touchstart', (e) => {
 
     boundingCircle()
   }
+
+  if(e.touches[0].clientX > screen.width / 2){
+    if(getDistance(mobileButtons) < 50){
+      Hero.shooting = true
+    }
+  }
+
+
 
 })
 
