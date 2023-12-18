@@ -178,8 +178,8 @@ canvas.addEventListener('touchstart', (e) => {
 
     touchStarting = true
 
-    joystick.x = e.touches[0].clientX
-    joystick.y = e.touches[0].clientY
+    joystick.x = e.touches[1].clientX
+    joystick.y = e.touches[1].clientY
 
     boundingCircle()
   }
