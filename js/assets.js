@@ -2,7 +2,7 @@ const img = new Image()
 img.src = "images/bg.png"
 
 const topIkon = new Image()
-topIkon.src = "images/junkArmorTop.png"
+topIkon.src = "images/junkarmortop.png"
 
 
 let sprites = {}
