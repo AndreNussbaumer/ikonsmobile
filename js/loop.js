@@ -1,11 +1,16 @@
 function mainLoop() {
-  ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight)
-  responsiveCanvas()
+  ctx.save()
+  ctx.translate(-MainCamera.pos.x, -MainCamera.pos.y)
+  ctx.drawImage(img, 0, 0)
+  cameraMoves()
+  startForest()
+  drawEveryObstacle()
   heroFunctions()
+  enemyFunctions()
+  laserUpdate()
+  ctx.drawImage(sprites.shadowsbg, 0, 0)
+  ctx.restore()
   joystick.draw()
   mobileButtons.draw()
-  laserUpdate()
   requestAnimationFrame(mainLoop)
 }
-
-mainLoop()

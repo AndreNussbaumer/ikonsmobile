@@ -1,0 +1,96 @@
+let enemies = []
+
+class Enemy {
+
+  constructor(x, y, r, m, name) {
+
+    this.pos = new Vector(x,y)
+    this.acc = new Vector(0,0)
+    this.vel = new Vector(0,0)
+    this.r = r
+    this.m = m; if(this.m === 0){ this.inv_m = 0 } else { this.inv_m = 1 / this.m; }
+    this.elasticity = 1
+    this.acceleration = 0.7
+    this.angle = 0
+    this.locked = false
+    this.name = name
+    this.hp = 10
+    this.hit = false
+    enemies.push(this)
+
+  }
+
+  drawEnemy() {
+
+    ctx.beginPath();
+    ctx.arc(this.pos.x, this.pos.y, this.r, 0, 2 * Math.PI)
+    ctx.fillStyle = "yellow"
+    ctx.fill()
+
+  }
+
+  updatePosition() {
+
+    this.acc = this.acc.unit().mult(this.acceleration)
+    // Ikons acceleration + velocity
+    this.vel = this.vel.add(this.acc)
+    // Ikons friction
+    this.vel = this.vel.mult(1-friction)
+    // Position for COLLISIONS
+    this.pos = this.pos.add(this.vel)
+
+  }
+
+  direction() {
+
+    let opposite = angle.y - this.pos.y
+    let adjacent = angle.x - this.pos.x
+
+    this.angle = Math.atan2(opposite, adjacent)
+
+  }
+
+  lockedTarget() {
+
+    enemies.forEach((enemy, i) => {
+
+    })
+
+    if(this.locked){
+      ctx.beginPath();
+      ctx.strokeStyle = "red"
+      ctx.arc(this.pos.x, this.pos.y, this.r + 40, 0, 2 * Math.PI)
+      ctx.stroke()
+    }
+  }
+
+
+  shoot() {
+
+    if(this.shooting){
+      lasers.push(new Lasers(this.pos.x, this.pos.y, this.stickAngle))
+    }
+
+    this.shooting = false
+  }
+}
+
+function enemyFunctions() {
+
+  enemies.forEach((enemy) => {
+    enemy.drawEnemy()
+    enemy.updatePosition()
+    enemy.direction()
+    enemy.shoot()
+    enemy.lockedTarget()
+  })
+
+}
+
+let antiHero = new Enemy(630, 230, 20, 10, 'Enemy 1')
+
+let antiHero1 = new Enemy(430, 130, 30, 5, 'Enemy 2')
+
+enemies.forEach(enemy => {
+  console.log(enemy.locked)
+})

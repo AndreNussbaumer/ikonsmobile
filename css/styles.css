@@ -16,8 +16,6 @@ body {
   left: 0;
   overflow: hidden;
   outline: none;
-  background-color: black;
-  transform: scale(1);
 }
 
 #toggle {
@@ -26,12 +24,6 @@ body {
   z-index: 10;
 }
 
-#fire {
-  position: absolute;
-  bottom: -45px;
-  z-index: 10;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  right: 2em;
+#loadingText {
+  display: none;
 }

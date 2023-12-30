@@ -1,5 +1,5 @@
 let ikons = []
-
+let lasers = []
 
 class Ikon {
 
@@ -10,21 +10,33 @@ class Ikon {
     this.vel = new Vector(0,0)
     this.r = r
     this.m = m; if(this.m === 0){ this.inv_m = 0 } else { this.inv_m = 1 / this.m; }
+    this.img = topIkon
     this.elasticity = 1
     this.acceleration = 0.7
     this.angle = 0
     this.stickAngle = 0
+    this.vertex = []
+    this.rotation = 0
     ikons.push(this)
 
   }
 
   drawIkon() {
 
-    ctx.beginPath();
-    ctx.arc(this.pos.x, this.pos.y, this.r, 0, 2 * Math.PI)
-    ctx.fillStyle = "green"
-    ctx.fill()
-
+    ctx.save()
+    ctx.translate(this.pos.x, this.pos.y)
+    ctx.rotate(this.rotation)
+    ctx.translate(-this.pos.x, -this.pos.y)
+    ctx.drawImage(this.img, this.pos.x - this.img.width/2, this.pos.y - this.img.height/2)
+    ctx.restore()
+    ctx.save()
+    /*
+    healthBar(this.pos.x - 50, this.pos.y -40, 100, 10, this.hp, this.hpMax)
+    ctx.fillStyle = 'blue'
+    ctx.fillRect(this.pos.x - 50, this.pos.y - 55, this.shieldTime, 10)
+    */
+    ctx.restore()
+    ctx.drawImage(sprites.shadowikon, this.pos.x - this.img.width/2 + 20, this.pos.y - this.img.height/2 + 20)
   }
 
   controls() {
@@ -41,7 +53,7 @@ class Ikon {
       if(!touchStarting){
         this.acc.y = 0
         this.acc.x = 0
-      }
+    }
 
       } else {
 
@@ -70,11 +82,20 @@ class Ikon {
       }
     }
 
-
     // keyboard
 
+  }
 
+  rotating() {
 
+    if(this.acc.x == 0 && this.acc.y == 0){
+      this.rotation = this.rotation += 0.05
+      if(this.rotation >= 360){
+        this.rotation = 0
+      }
+    } else {
+      this.rotation += 1
+    }
   }
 
   updatePosition() {
@@ -91,10 +112,10 @@ class Ikon {
 
   collisions() {
 
-    ikons.forEach((ikon) => {
-      if(col_det_bb(this, ikon)){
-        pen_res_bb(this, ikon)
-        col_res_bb(this, ikon)
+    enemies.forEach((enemy) => {
+      if(col_det_bb(this, enemy)){
+        pen_res_bb(this, enemy)
+        col_res_bb(this, enemy)
       }
     })
   }
@@ -110,24 +131,24 @@ class Ikon {
 
   }
 
+  lockingTarget() {
+    enemies.forEach((enemy, i) => {
+      ctx.fillText(enemy.name, 50 * i, 200)
+    })
+  }
+
   shoot() {
 
     if(this.shooting){
       lasers.push(new Lasers(this.pos.x, this.pos.y, this.stickAngle))
     }
-
     this.shooting = false
-
   }
 
 
 }
 
-let Hero = new Ikon(510, 210, 20, 10)
-
-let antiHero = new Ikon(630, 230, 20, 10)
-
-let antiHero1 = new Ikon(430, 130, 30, 15)
+let Hero = new Ikon(510, 210, 14, 10)
 
 function heroFunctions() {
 
@@ -136,9 +157,10 @@ function heroFunctions() {
     ikon.collisions()
     ikon.updatePosition()
     ikon.direction()
+    ikon.lockingTarget()
     ikon.shoot()
+    ikon.controls()
+    ikon.rotating()
   })
-
-  Hero.controls()
 
 }

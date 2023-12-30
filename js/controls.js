@@ -101,7 +101,7 @@ class Joystick {
 }
 
 let positionJoystick = window.innerWidth / 9.1
-let positionJoyLeft = window.innerHeight / 1.02
+let positionJoyLeft = window.innerHeight / 1.2
 
 let ratio = window.innerHeight / window.innerWidth
 
@@ -153,16 +153,14 @@ class MobileButtons {
 
 }
 
-let positionButtons = window.innerWidth / 1.15
-let positionButtonsRight = window.innerHeight / 1.02
+let positionButtons = window.innerWidth / 1.10
+let positionButtonsRight = window.innerHeight / 1.2
 
 let mobileButtons = new MobileButtons(positionButtons, positionButtonsRight, 50)
 
 let touchEvent
 
 let touchStarting = false
-
-console.log(joystick.x)
 
 canvas.addEventListener('touchstart', (e) => {
 
@@ -201,7 +199,8 @@ canvas.addEventListener('touchstart', (e) => {
           mobileY = e.touches[1].clientY
           if(getDistance(mobileButtons) < 50){
             Hero.shooting = true
-        }
+          }
+
       }
     }
   }
@@ -210,9 +209,22 @@ canvas.addEventListener('touchstart', (e) => {
   if(e.touches[0].clientX > screen.width / 2 ){
     mobileX = e.touches[0].clientX
     mobileY = e.touches[0].clientY
-      if(getDistance(mobileButtons) < 50){
-        Hero.shooting = true
+
+    if(getDistance(mobileButtons) < 50){
+      Hero.shooting = true
     }
+
+    enemies.forEach((enemy) => {
+
+      if(getDistance(enemy.pos) < enemy.r){
+        if(enemy.locked){
+          enemy.locked = false
+        } else {
+          enemy.locked = true
+        }
+      }
+    })
+
   }
 
 })
@@ -252,6 +264,7 @@ canvas.addEventListener('mousedown', function(e) {
 
   if(e.buttons === 1 ) {
     LEFTCLICK = true
+    Hero.shooting = true
   }
 
 })
@@ -260,6 +273,7 @@ canvas.addEventListener('mouseup', function(e) {
 
   if(e.button === 1 ) {
     LEFTCLICK = false
+    Hero.shooting = false
   }
 
 })
@@ -268,7 +282,9 @@ canvas.addEventListener('mousemove', (event) => {
 
     mouseX = event.clientX - canvas.offsetLeft
     mouseY = event.clientY - canvas.offsetTop
-
+    /*
+    console.log(mouseX + MainCamera.pos.x, mouseY + MainCamera.pos.y)
+*/
     angle = new Vector(mouseX, mouseY)
 
 })
