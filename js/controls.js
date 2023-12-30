@@ -260,6 +260,8 @@ canvas.oncontextmenu = function(e) {
    e.preventDefault(); e.stopPropagation();
 }
 
+/*
+
 canvas.addEventListener('mousedown', function(e) {
 
   if(e.buttons === 1 ) {
@@ -284,7 +286,8 @@ canvas.addEventListener('mousemove', (event) => {
     mouseY = event.clientY - canvas.offsetTop
     /*
     console.log(mouseX + MainCamera.pos.x, mouseY + MainCamera.pos.y)
-*/
+
     angle = new Vector(mouseX, mouseY)
 
 })
+*/
