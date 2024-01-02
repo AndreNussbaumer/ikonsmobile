@@ -1,4 +1,3 @@
-
 const pressToPlay = document.getElementById('pressToPlay')
 
 function toggleFullscreen() {
@@ -7,8 +6,8 @@ function toggleFullscreen() {
 
     pressToPlay.style.display = 'none'
 
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
+    canvas.width = screen.width
+    canvas.height = screen.height
 
     loadAssets()
 
