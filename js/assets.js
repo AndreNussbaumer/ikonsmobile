@@ -11,10 +11,10 @@ const loadingText = document.getElementById('loadingText')
 function assetsLoadingLoop(callback) {
 
   if(assetsStillLoading) {
-    loadingText.style.visibility = 'visible'
+    loadingText.style.display = 'flex'
     requestAnimationFrame(assetsLoadingLoop.bind(this, callback));
   } else {
-    loadingText.style.visibility = 'hidden'
+    loadingText.style.display = 'none'
     requestAnimationFrame(mainLoop)
   }
 }
