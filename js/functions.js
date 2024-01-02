@@ -6,9 +6,6 @@ function toggleFullscreen() {
 
     pressToPlay.style.display = 'none'
 
-    canvas.width = screen.width
-    canvas.height = screen.height
-
     loadAssets()
 
     canvas.requestFullscreen().catch((err) => {

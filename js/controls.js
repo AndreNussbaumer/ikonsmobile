@@ -291,7 +291,16 @@ if(!mobile){
 
 }
 
+canvas.width = screen.width
+canvas.height = screen.height
+
 screen.orientation.addEventListener("change", (e) => {
+
+  canvas.width = screen.width
+  canvas.height = screen.height
+
+  MainCamera.width = canvas.width
+  MainCamera.height = canvas.height
 
   mobileButtons.x = canvas.width / 1.10
   mobileButtons.y = canvas.height / 1.2
