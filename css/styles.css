@@ -9,6 +9,7 @@ body {
   left: 0;
   outline: none;
   overflow: hidden;
+  background-color: black;
 }
 
 #canvas {
@@ -26,4 +27,69 @@ body {
 
 #loadingText {
   display: none;
+}
+
+#horizontalOnly {
+  display: none;
+}
+
+#pressToPlay {
+  -webkit-animation: fadeinout 2s infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 600px;
+  height: 100%;
+  color: white;
+}
+
+
+
+@-webkit-keyframes fadeinout {
+
+  0% {
+  -webkit-filter: opacity(1);
+  }
+
+  50% {
+  -webkit-filter: opacity(0.1);
+  }
+
+  100% {
+  -webkit-filter: opacity(1);
+  }
+
+}
+
+@media screen and (orientation:portrait) {
+
+  #canvas {
+    display: none;
+  }
+
+  #toggle {
+    display: none;
+  }
+
+  #loadingText {
+    display: none;
+  }
+
+  body {
+    background-color: black;
+  }
+
+  #horizontalOnly {
+    -webkit-animation: fadeinout 2s infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 600px;
+    height: 100%;
+    color: white;
+  }
+
+  #pressToPlay {
+    display: none;
+  }
 }

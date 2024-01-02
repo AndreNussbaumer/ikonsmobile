@@ -16,8 +16,6 @@ function startObstacles() {
     let aresta2 = new Obstacle(381, 320, 276, 165)
     let aresta3 = new Obstacle(276, 165, 149, 255)
 
-    ctx.drawImage(sprites.trunk, 1090, 455, sprites.trunk.width / 2, sprites.trunk.height / 2)
-
     let trunk = new Obstacle(1395, 500, 1443, 522)
     let trunk1 = new Obstacle(1443, 522, 1481, 571)
     let trunk2 = new Obstacle(1481, 571, 1223, 935)

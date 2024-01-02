@@ -1,5 +1,3 @@
-const img = new Image()
-img.src = "images/bg.png"
 
 const topIkon = new Image()
 topIkon.src = "images/junkarmortop.png"

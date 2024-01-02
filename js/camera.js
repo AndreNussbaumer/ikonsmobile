@@ -104,7 +104,7 @@ class Map {
   constructor() {
     this.x = 0
     this.y = 0
-    this.img = img
+    this.img = sprites.background
     this.width = 1920
     this.height = 1080
   }

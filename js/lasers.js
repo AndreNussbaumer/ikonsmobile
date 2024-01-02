@@ -29,13 +29,17 @@ class Lasers {
       // Ikons acceleration + velocity
     this.vel = this.vel.add(this.acc)
         // Ikons friction
-    this.vel = this.vel.mult(1-friction)
+
         // Position for COLLISIONS
     this.pos = this.pos.add(this.vel)
 
     if(this.timer++ > 100){
       this.toRemove = true
     }
+
+  }
+
+  collisions() {
 
     obstacles.forEach((obstacle, i) => {
       if(col_det_mo(this, obstacle)){
@@ -61,13 +65,17 @@ function laserUpdate() {
   lasers.forEach((laser, index) => {
 
     if(laser.toRemove){
+
       lasers.splice(index, 1)
+
     } else {
+
       ctx.beginPath();
       ctx.arc(laser.pos.x, laser.pos.y, laser.r, 0, 2 * Math.PI)
       ctx.fillStyle = "blue"
       ctx.fill()
       laser.updatePosition()
-    }
-  })
+
+  }
+ })
 }

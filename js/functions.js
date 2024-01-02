@@ -1,13 +1,19 @@
 
-canvas.width = window.innerWidth
-canvas.height = window.innerHeight
 
+const pressToPlay = document.getElementById('pressToPlay')
 
 function toggleFullscreen() {
 
   if (!document.fullscreenElement) {
-    canvas.requestFullscreen().catch((err) => {
 
+    pressToPlay.style.display = 'none'
+
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+
+    loadAssets()
+
+    canvas.requestFullscreen().catch((err) => {
       alert(
         `Error attempting to enable fullscreen mode: ${err.message} (${err.name})`,
       )

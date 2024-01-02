@@ -15,7 +15,7 @@ class Ikon {
     this.acceleration = 0.7
     this.angle = 0
     this.stickAngle = 0
-    this.vertex = []
+    this.lockedAngle = 0
     this.rotation = 0
     ikons.push(this)
 
@@ -113,17 +113,18 @@ class Ikon {
   collisions() {
 
     enemies.forEach((enemy) => {
-      if(col_det_bb(this, enemy)){
-        pen_res_bb(this, enemy)
-        col_res_bb(this, enemy)
-      }
-    })
-  }
+    if(col_det_bb(this, enemy)){
+      pen_res_bb(this, enemy)
+      col_res_bb(this, enemy)
+       }
+     })
+    }
 
   direction() {
 
     let opposite = angle.y - this.pos.y
     let adjacent = angle.x - this.pos.x
+
 
     this.angle = Math.atan2(opposite, adjacent)
 
@@ -132,23 +133,46 @@ class Ikon {
   }
 
   lockingTarget() {
+
+    let found = enemies.find(enemy => enemy.locked)
+
     enemies.forEach((enemy, i) => {
-      ctx.fillText(enemy.name, 50 * i, 200)
+
+      if(getDistanceObj(this, enemy) < 400 && !enemy.locked && found == undefined){
+
+        enemy.locked = true
+
+      }
+
     })
+
   }
 
   shoot() {
 
-    if(this.shooting){
+    let found = enemies.find(enemy => enemy.locked)
+
+    if(this.shooting && found == undefined){
+
       lasers.push(new Lasers(this.pos.x, this.pos.y, this.stickAngle))
+
+    } else if(this.shooting && found){
+
+      let opp = found.pos.y - this.pos.y
+      let adj = found.pos.x - this.pos.x
+
+      this.lockedAngle = Math.atan2(opp, adj)
+
+      lasers.push(new Lasers(this.pos.x, this.pos.y, this.lockedAngle))
     }
+
     this.shooting = false
   }
 
 
 }
 
-let Hero = new Ikon(510, 210, 14, 10)
+let Hero = new Ikon(1010, 510, 14, 10)
 
 function heroFunctions() {
 

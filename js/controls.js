@@ -100,13 +100,9 @@ class Joystick {
 
 }
 
-let positionJoystick = window.innerWidth / 9.1
-let positionJoyLeft = window.innerHeight / 1.2
-
-let ratio = window.innerHeight / window.innerWidth
 
 
-let joystick = new Joystick(positionJoystick, positionJoyLeft, 20)
+let joystick = new Joystick(canvas.width / 9.1, canvas.height / 1.2, 20)
 
 
 function boundingCircle() {
@@ -153,10 +149,12 @@ class MobileButtons {
 
 }
 
+/*
 let positionButtons = window.innerWidth / 1.10
 let positionButtonsRight = window.innerHeight / 1.2
 
-let mobileButtons = new MobileButtons(positionButtons, positionButtonsRight, 50)
+*/
+let mobileButtons = new MobileButtons(canvas.width / 1.10, canvas.height / 1.2, 50)
 
 let touchEvent
 
@@ -256,38 +254,39 @@ canvas.addEventListener('touchend', (e) => {
   }
 })
 
+
 canvas.oncontextmenu = function(e) {
    e.preventDefault(); e.stopPropagation();
 }
 
-/*
 
-canvas.addEventListener('mousedown', function(e) {
+if(!mobile){
 
-  if(e.buttons === 1 ) {
-    LEFTCLICK = true
-    Hero.shooting = true
-  }
+  canvas.addEventListener('mousedown', function(e) {
 
-})
+    if(e.buttons === 1 ) {
+      LEFTCLICK = true
+      Hero.shooting = true
+    }
 
-canvas.addEventListener('mouseup', function(e) {
+  })
 
-  if(e.button === 1 ) {
-    LEFTCLICK = false
-    Hero.shooting = false
-  }
+  canvas.addEventListener('mouseup', function(e) {
 
-})
+    if(e.button === 1 ) {
+      LEFTCLICK = false
+      Hero.shooting = false
+    }
+  })
 
-canvas.addEventListener('mousemove', (event) => {
 
-    mouseX = event.clientX - canvas.offsetLeft
-    mouseY = event.clientY - canvas.offsetTop
-    /*
-    console.log(mouseX + MainCamera.pos.x, mouseY + MainCamera.pos.y)
+  canvas.addEventListener('mousemove', (event) => {
 
-    angle = new Vector(mouseX, mouseY)
+      mouseX = event.clientX - canvas.offsetLeft
+      mouseY = event.clientY - canvas.offsetTop
 
-})
-*/
+      angle = new Vector(mouseX + MainCamera.pos.x, mouseY + MainCamera.pos.y)
+
+  })
+
+}

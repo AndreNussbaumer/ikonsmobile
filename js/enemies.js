@@ -52,16 +52,25 @@ class Enemy {
 
   lockedTarget() {
 
-    enemies.forEach((enemy, i) => {
-
-    })
+    if(getDistanceObj(this, Hero) > 400){
+      this.locked = false
+    }
 
     if(this.locked){
+
       ctx.beginPath();
       ctx.strokeStyle = "red"
       ctx.arc(this.pos.x, this.pos.y, this.r + 40, 0, 2 * Math.PI)
       ctx.stroke()
+
+      ctx.beginPath()
+      ctx.moveTo(Hero.pos.x, Hero.pos.y)
+      ctx.lineTo(this.pos.x, this.pos.y)
+      ctx.strokeStyle = "rgba(255, 255, 255, 1)"
+      ctx.stroke()
+      ctx.closePath()
     }
+
   }
 
 
@@ -90,7 +99,3 @@ function enemyFunctions() {
 let antiHero = new Enemy(630, 230, 20, 10, 'Enemy 1')
 
 let antiHero1 = new Enemy(430, 130, 30, 5, 'Enemy 2')
-
-enemies.forEach(enemy => {
-  console.log(enemy.locked)
-})
