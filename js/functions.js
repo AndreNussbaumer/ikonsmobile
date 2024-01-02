@@ -1,5 +1,4 @@
 
-
 const pressToPlay = document.getElementById('pressToPlay')
 
 function toggleFullscreen() {
