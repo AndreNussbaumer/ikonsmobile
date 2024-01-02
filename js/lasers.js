@@ -14,14 +14,18 @@ class Lasers {
     this.timer = 0
     this.toRemove = false
     this.r = 6
-    this.acceleration = 1
+    this.acceleration = 0.7
 
   }
 
   updatePosition() {
 
-    // this.power = Math.floor((Math.random() * Ikon1.power) + Ikon1.naturalPower)
+    this.pos.x += this.spdX
+    this.pos.y += this.spdY
 
+
+    // this.power = Math.floor((Math.random() * Ikon1.power) + Ikon1.naturalPower)
+    /*
     this.acc.x = this.acceleration * this.spdX
     this.acc.y = this.acceleration * this.spdY
 
@@ -32,7 +36,7 @@ class Lasers {
 
         // Position for COLLISIONS
     this.pos = this.pos.add(this.vel)
-
+    */
     if(this.timer++ > 100){
       this.toRemove = true
     }
@@ -55,7 +59,6 @@ class Lasers {
         enemy.hit = true
         this.toRemove = true
       }
-
     })
   }
 }
@@ -75,6 +78,7 @@ function laserUpdate() {
       ctx.fillStyle = "blue"
       ctx.fill()
       laser.updatePosition()
+      laser.collisions()
 
   }
  })

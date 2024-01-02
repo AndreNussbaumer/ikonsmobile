@@ -12,7 +12,7 @@ class Ikon {
     this.m = m; if(this.m === 0){ this.inv_m = 0 } else { this.inv_m = 1 / this.m; }
     this.img = topIkon
     this.elasticity = 1
-    this.acceleration = 0.7
+    this.acceleration = 0.4
     this.angle = 0
     this.stickAngle = 0
     this.lockedAngle = 0
@@ -53,7 +53,7 @@ class Ikon {
       if(!touchStarting){
         this.acc.y = 0
         this.acc.x = 0
-    }
+      }
 
       } else {
 
@@ -125,7 +125,6 @@ class Ikon {
     let opposite = angle.y - this.pos.y
     let adjacent = angle.x - this.pos.x
 
-
     this.angle = Math.atan2(opposite, adjacent)
 
     this.stickAngle = Math.atan2(this.vel.y, this.vel.x)
@@ -143,9 +142,7 @@ class Ikon {
         enemy.locked = true
 
       }
-
     })
-
   }
 
   shoot() {

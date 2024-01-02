@@ -1,8 +1,6 @@
 const canvas = document.getElementById("canvas")
 const ctx = canvas.getContext("2d")
 
-
-
 if(screen.width <= 950){
   mobile = true
 } else {
