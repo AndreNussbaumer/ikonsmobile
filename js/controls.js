@@ -198,7 +198,6 @@ canvas.addEventListener('touchstart', (e) => {
           if(getDistance(mobileButtons) < 50){
             Hero.shooting = true
           }
-
       }
     }
   }
@@ -315,3 +314,23 @@ screen.orientation.addEventListener("change", (e) => {
   joystick.y = canvas.height / 1.2
 
 })
+/*
+window.addEventListener("load", (e) => {
+  console.log(e)
+})
+
+const loadingText = document.getElementById('loadingText')
+
+window.addEventListener("onreadystatechange ", (e) => {
+
+  if (document.readyState === "loading") {
+    loadingText.style.display = 'flex'
+  }
+  if (document.readyState === "complete") {
+    loadingText.style.display = 'none'
+    requestAnimationFrame(mainLoop)
+  }
+  console.log(e)
+
+})
+*/

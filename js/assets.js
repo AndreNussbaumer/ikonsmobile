@@ -33,7 +33,7 @@ function loadAssets(callback) {
     }
     return spriteImage
   }
-
+  
   sprites.stone = loadSprite("stone.png")
   sprites.trunk = loadSprite("trunk.png")
   sprites.shadowikon = loadSprite("shadow.png")
