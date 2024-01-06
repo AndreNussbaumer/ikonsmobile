@@ -18,26 +18,35 @@ class Ikon {
     this.lockedAngle = 0
     this.rotation = 0
     this.hp = 60
-    this.hpMax = 100
     ikons.push(this)
 
   }
 
   drawIkon() {
 
+    ctx.beginPath()
+    ctx.moveTo(this.pos.x, this.pos.y)
+    ctx.lineTo(this.pos.x + this.vel.x * 100, this.pos.y + this.vel.y * 100)
+    ctx.strokeStyle = "rgba(255, 155, 55, 0.5)"
+    ctx.lineWidth = 20
+    ctx.stroke()
+    ctx.closePath()
+
     ctx.save()
     ctx.translate(this.pos.x, this.pos.y)
     ctx.rotate(this.rotation)
     ctx.translate(-this.pos.x, -this.pos.y)
+    ctx.shadowColor="purple";
+    ctx.shadowBlur = 40;
     ctx.drawImage(this.img, this.pos.x - this.img.width/2, this.pos.y - this.img.height/2)
     ctx.restore()
-    ctx.save()
 
-    healthBar(this.pos.x - 50, this.pos.y -40, 100, 10, this.hp, this.hpMax)
+    ctx.save()
+    healthBar(this.pos.x - 50, this.pos.y -40, 100, 10, this.hp, 100)
     ctx.fillStyle = 'blue'
     ctx.fillRect(this.pos.x - 50, this.pos.y - 55, this.shieldTime, 10)
-
     ctx.restore()
+
     ctx.drawImage(sprites.shadowikon, this.pos.x - this.img.width/2 + 20, this.pos.y - this.img.height/2 + 20)
   }
 
@@ -147,6 +156,7 @@ class Ikon {
     })
   }
 
+
   shoot() {
 
     let found = enemies.find(enemy => enemy.locked)
@@ -169,6 +179,7 @@ class Ikon {
   }
 
 
+
 }
 
 let Hero = new Ikon(1010, 510, 14, 10)
@@ -176,6 +187,7 @@ let Hero = new Ikon(1010, 510, 14, 10)
 function heroFunctions() {
 
   ikons.forEach((ikon) => {
+
     ikon.drawIkon()
     ikon.collisions()
     ikon.updatePosition()
@@ -184,6 +196,6 @@ function heroFunctions() {
     ikon.shoot()
     ikon.controls()
     ikon.rotating()
-  })
 
+  })
 }

@@ -44,7 +44,6 @@ body {
 }
 
 #pressToPlay {
-  -webkit-animation: fadeinout 2s infinite;
   position: fixed;
   display: flex;
   align-items: center;
@@ -53,8 +52,12 @@ body {
   height: 100%;
   color: white;
   z-index: 20;
+  background-color: black;
 }
 
+#press {
+  -webkit-animation: fadeinout 2s infinite;
+}
 
 @-webkit-keyframes fadeinout {
 

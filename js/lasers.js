@@ -15,6 +15,7 @@ class Lasers {
     this.toRemove = false
     this.r = 6
     this.acceleration = 0.7
+    this.power = 5
 
   }
 
@@ -57,6 +58,7 @@ class Lasers {
 
       if(getDistanceObj(this, enemy) < 30) {
         enemy.hit = true
+        enemy.hp -= this.power
         this.toRemove = true
       }
     })

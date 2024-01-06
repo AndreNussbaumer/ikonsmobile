@@ -16,6 +16,7 @@ class Enemy {
     this.name = name
     this.hp = 10
     this.hit = false
+    this.toRemove = false
     enemies.push(this)
 
   }
@@ -24,6 +25,7 @@ class Enemy {
 
     ctx.beginPath();
     ctx.arc(this.pos.x, this.pos.y, this.r, 0, 2 * Math.PI)
+    healthBar(this.pos.x - 50,this.pos.y -40, 100, 10, this.hp, 100)
     ctx.fillStyle = "yellow"
     ctx.fill()
 
@@ -48,6 +50,12 @@ class Enemy {
 
     this.angle = Math.atan2(opposite, adjacent)
 
+  }
+
+  life() {
+    if(this.hp <= 0){
+      this.toRemove = true
+    }
   }
 
   lockedTarget() {
@@ -86,12 +94,17 @@ class Enemy {
 
 function enemyFunctions() {
 
-  enemies.forEach((enemy) => {
-    enemy.drawEnemy()
-    enemy.updatePosition()
-    enemy.direction()
-    enemy.shoot()
-    enemy.lockedTarget()
+  enemies.forEach((enemy, i) => {
+    if(enemy.toRemove){
+      enemies.splice(i, 1)
+    } else {
+      enemy.drawEnemy()
+      enemy.updatePosition()
+      enemy.direction()
+      enemy.shoot()
+      enemy.lockedTarget()
+      enemy.life()
+    }
   })
 
 }
