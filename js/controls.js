@@ -293,10 +293,6 @@ mobileButtons.y = canvas.height / 1.25
 
 joystick.x = canvas.width / 9.1
 joystick.y = canvas.height / 1.2
-joystick.X = canvas.width / 9
-joystick.Y = canvas.width / 1.1
-
-console.log(joystick)
 
 screen.orientation.addEventListener("change", (e) => {
 
