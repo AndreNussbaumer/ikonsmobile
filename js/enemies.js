@@ -12,6 +12,7 @@ class Enemy {
     this.elasticity = 1
     this.acceleration = 0.7
     this.angle = 0
+    this.rotation = 0
     this.locked = false
     this.name = name
     this.hp = 10
@@ -53,9 +54,24 @@ class Enemy {
   }
 
   life() {
+
     if(this.hp <= 0){
       this.toRemove = true
     }
+    
+  }
+
+  rotating() {
+
+    if(this.acc.x == 0 && this.acc.y == 0){
+      this.rotation = this.rotation += 0.05
+      if(this.rotation >= 360){
+        this.rotation = 0
+      }
+    } else {
+      this.rotation += 1
+    }
+
   }
 
   lockedTarget() {
@@ -66,10 +82,26 @@ class Enemy {
 
     if(this.locked){
 
+      ctx.save()
       ctx.beginPath();
-      ctx.strokeStyle = "red"
+      ctx.strokeStyle = "rgba(255, 25, 0, 0.5)"
+      ctx.lineWidth = 2;
       ctx.arc(this.pos.x, this.pos.y, this.r + 40, 0, 2 * Math.PI)
       ctx.stroke()
+      ctx.closePath()
+      ctx.restore()
+
+      ctx.save()
+      ctx.translate(this.pos.x, this.pos.y)
+      ctx.rotate(this.rotation)
+      ctx.translate(-this.pos.x, -this.pos.y)
+      ctx.beginPath();
+      ctx.strokeStyle = "rgba(255, 25, 0, 0.5)"
+      ctx.lineWidth = 10;
+      ctx.arc(this.pos.x, this.pos.y, this.r + 40, 0, 10, 90)
+      ctx.stroke()
+      ctx.closePath()
+      ctx.restore()
 
       ctx.beginPath()
       ctx.moveTo(Hero.pos.x, Hero.pos.y)
@@ -102,6 +134,7 @@ function enemyFunctions() {
       enemy.updatePosition()
       enemy.direction()
       enemy.shoot()
+      enemy.rotating()
       enemy.lockedTarget()
       enemy.life()
     }
