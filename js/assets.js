@@ -7,14 +7,18 @@ let sprites = {}
 let assetsStillLoading = 0
 
 const loadingText = document.getElementById('loadingText')
+const pressToPlay = document.getElementById('pressToPlay')
+
 
 function assetsLoadingLoop(callback) {
 
   if(assetsStillLoading) {
+    pressToPlay.style.display = 'none'
     loadingText.style.display = 'flex'
     requestAnimationFrame(assetsLoadingLoop.bind(this, callback));
   } else {
     loadingText.style.display = 'none'
+    pressToPlay.style.display = 'flex'
     requestAnimationFrame(mainLoop)
   }
 }
@@ -33,7 +37,7 @@ function loadAssets(callback) {
     }
     return spriteImage
   }
-  
+
   sprites.stone = loadSprite("stone.png")
   sprites.trunk = loadSprite("trunk.png")
   sprites.shadowikon = loadSprite("shadow.png")

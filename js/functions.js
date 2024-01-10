@@ -1,10 +1,10 @@
-const pressToPlay = document.getElementById('pressToPlay')
+
 
 function toggleFullscreen() {
 
   if (!document.fullscreenElement) {
 
-    pressToPlay.style.display = 'none'
+
 
     canvas.requestFullscreen().catch((err) => {
       alert(
