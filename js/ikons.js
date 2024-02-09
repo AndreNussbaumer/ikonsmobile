@@ -24,6 +24,7 @@ class Ikon {
 
   drawIkon() {
 
+    /*
     ctx.beginPath()
     ctx.moveTo(this.pos.x, this.pos.y)
     ctx.lineTo(this.pos.x + this.vel.x * 100, this.pos.y + this.vel.y * 100)
@@ -31,6 +32,7 @@ class Ikon {
     ctx.lineWidth = 20
     ctx.stroke()
     ctx.closePath()
+    */
 
     ctx.save()
     ctx.translate(this.pos.x, this.pos.y)

@@ -1,3 +1,5 @@
+let visibleIkons = []
+
 // Camera Object
 
 class Camera {
@@ -94,8 +96,8 @@ function cameraMoves() {
   if(Hero.pos.y > Dungeon.height){
     Hero.pos.y = Dungeon.height
   }
-}
 
+}
 
 let MainCamera = new Camera(0, 0)
 

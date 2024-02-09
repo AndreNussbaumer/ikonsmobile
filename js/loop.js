@@ -10,6 +10,7 @@ function mainLoop() {
   heroFunctions()
   ctx.drawImage(sprites.shadowsbg, 0, 0)
   ctx.restore()
+  enemyVisible()
   joystick.draw()
   mobileButtons.draw()
   requestAnimationFrame(mainLoop)

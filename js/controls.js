@@ -250,7 +250,8 @@ canvas.addEventListener('touchend', (e) => {
 
 
 canvas.oncontextmenu = function(e) {
-   e.preventDefault(); e.stopPropagation();
+   e.preventDefault();
+   e.stopPropagation();
 }
 
 
@@ -285,6 +286,7 @@ if(!mobile){
 
 }
 
+/*
 canvas.width = screen.width
 canvas.height = screen.height
 
@@ -293,8 +295,7 @@ mobileButtons.y = canvas.height / 1.25
 
 joystick.x = canvas.width / 9.1
 joystick.y = canvas.height / 1.2
-
-boundingCircle()
+*/
 
 screen.orientation.addEventListener("change", (e) => {
 
@@ -310,9 +311,9 @@ screen.orientation.addEventListener("change", (e) => {
   joystick.x = canvas.width / 9.1
   joystick.y = canvas.height / 1.2
 
-  boundingCircle()
-
 })
+
+
 /*
 window.addEventListener("load", (e) => {
   console.log(e)

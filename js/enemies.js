@@ -14,6 +14,7 @@ class Enemy {
     this.angle = 0
     this.rotation = 0
     this.locked = false
+    this.visible = false
     this.name = name
     this.hp = 10
     this.hit = false
@@ -58,7 +59,7 @@ class Enemy {
     if(this.hp <= 0){
       this.toRemove = true
     }
-    
+
   }
 
   rotating() {
@@ -113,7 +114,6 @@ class Enemy {
 
   }
 
-
   shoot() {
 
     if(this.shooting){
@@ -121,6 +121,22 @@ class Enemy {
     }
 
     this.shooting = false
+  }
+
+  visibility() {
+
+    if(this.pos.x + this.r > MainCamera.pos.x || this.pos.y + this.r > MainCamera.pos.y && !this.visible){
+      this.visible = true
+    }
+
+    if(this.pos.x + this.r < MainCamera.pos.x || this.pos.y + this.r < MainCamera.pos.y && this.visible){
+      this.visible = false
+    }
+
+    if(this.visible){
+      new EnemyDisplay(620, 20 * 30, 100, 25, 0.9)
+    }
+
   }
 }
 
@@ -137,10 +153,52 @@ function enemyFunctions() {
       enemy.rotating()
       enemy.lockedTarget()
       enemy.life()
+      enemy.visibility()
+    }
+  })
+}
+
+enemiesDisplay = []
+
+class EnemyDisplay {
+
+  constructor(x, y, width, height, opacity) {
+
+    this.x = x
+    this.y = y
+    this.width = width
+    this.height = height
+    this.opacity = opacity
+    enemiesDisplay.push(this)
+
+  }
+
+  draw(i, name) {
+    ctx.save()
+    box(this.x, this.y + i * 30, this.width, this.height, this.opacity)
+    ctx.font = "16px Arial"
+    ctx.fillText(name, 630, 40 + i * 30)
+    ctx.restore()
+    /*
+    if(clickInside(this)){
+
+      console.log('clicked')
+    }
+    */
+  }
+}
+
+function displayEnemies() {
+  enemiesDisplay.forEach((enemy, i) => {
+    if(enemy.visible){
+      enemy.draw(i, enemy.name)
+    } else {
+      enemiesDisplay.splice(i, 1)
     }
   })
 
 }
+
 
 let antiHero = new Enemy(630, 230, 20, 10, 'Enemy 1')
 

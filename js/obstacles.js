@@ -7,9 +7,9 @@ let obstacles = []
 class Obstacle {
 
   constructor(x1, y1, x2, y2){
-    this.start = new Vector(x1, y1);
-    this.end = new Vector(x2, y2);
-    obstacles.push(this);
+    this.start = new Vector(x1, y1)
+    this.end = new Vector(x2, y2)
+    obstacles.push(this)
   }
 
   drawObstacle(){
@@ -22,7 +22,7 @@ class Obstacle {
   }
 
   obstacleUnit(){
-    return this.end.subtr(this.start).unit();
+    return this.end.subtr(this.start).unit()
   }
 
 }
