@@ -9,7 +9,6 @@ let assetsStillLoading = 0
 const loadingText = document.getElementById('loadingText')
 const pressToPlay = document.getElementById('pressToPlay')
 
-
 function assetsLoadingLoop(callback) {
 
   if(assetsStillLoading) {
