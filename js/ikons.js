@@ -38,8 +38,6 @@ class Ikon {
     ctx.translate(this.pos.x, this.pos.y)
     ctx.rotate(this.rotation)
     ctx.translate(-this.pos.x, -this.pos.y)
-    ctx.shadowColor="purple";
-    ctx.shadowBlur = 40;
     ctx.drawImage(this.img, this.pos.x - this.img.width/2, this.pos.y - this.img.height/2)
     ctx.restore()
 
@@ -179,8 +177,6 @@ class Ikon {
 
     this.shooting = false
   }
-
-
 
 }
 

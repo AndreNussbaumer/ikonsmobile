@@ -286,17 +286,6 @@ if(!mobile){
 
 }
 
-/*
-canvas.width = screen.width
-canvas.height = screen.height
-
-mobileButtons.x = canvas.width / 1.10
-mobileButtons.y = canvas.height / 1.25
-
-joystick.x = canvas.width / 9.1
-joystick.y = canvas.height / 1.2
-*/
-
 screen.orientation.addEventListener("change", (e) => {
 
   canvas.width = screen.width
