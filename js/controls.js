@@ -102,8 +102,7 @@ class Joystick {
 
 
 
-let joystick = new Joystick(canvas.width / 9.1, canvas.height / 1.2, 20)
-
+let joystick = new Joystick(canvas.width / 9, canvas.height / 1.2, 20)
 
 function boundingCircle() {
 
@@ -149,7 +148,7 @@ class MobileButtons {
 
 }
 
-let mobileButtons = new MobileButtons(canvas.width / 1.10, canvas.height / 1.2, 50)
+let mobileButtons = new MobileButtons(canvas.width / 1.12, canvas.height / 1.25, 50)
 
 let touchEvent
 
@@ -221,6 +220,25 @@ canvas.addEventListener('touchstart', (e) => {
 
 })
 
+canvas.addEventListener('click', (e) => {
+
+  for(let i = 0; i < enemies.length; i++){
+
+    let enemy = enemies[i]
+
+    let lockedEnemy = enemies.find(enemy => enemy.locked)
+
+
+    if(enemy.visible){
+      if(clickInside(620, 100, 20 + i * 30, 25)){
+        if(!enemy.locked){
+          enemy.locked = true
+          lockedEnemy.locked = false
+        }
+      }
+    }
+  }
+})
 
 canvas.addEventListener('touchmove', (e) => {
 
@@ -286,13 +304,6 @@ if(!mobile){
 
 }
 
-
-canvas.width = screen.width
-canvas.height = screen.height
-
-mobileButtons.x = canvas.width / 1.10
-mobileButtons.y = canvas.height / 1.25
-
 screen.orientation.addEventListener("change", (e) => {
 
   canvas.width = screen.width
@@ -301,7 +312,7 @@ screen.orientation.addEventListener("change", (e) => {
   MainCamera.width = canvas.width
   MainCamera.height = canvas.height
 
-  mobileButtons.x = canvas.width / 1.10
+  mobileButtons.x = canvas.width / 1.12
   mobileButtons.y = canvas.height / 1.25
 
 })

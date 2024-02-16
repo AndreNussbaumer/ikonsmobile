@@ -77,12 +77,11 @@ class Enemy {
 
   lockedTarget() {
 
-    if(getDistanceObj(this, Hero) > 400){
+    if(!this.visible){
       this.locked = false
     }
 
     if(this.locked){
-
       ctx.save()
       ctx.beginPath();
       ctx.strokeStyle = "rgba(255, 25, 0, 0.5)"
@@ -134,7 +133,7 @@ class Enemy {
     }
 
     if(this.visible){
-      new EnemyDisplay(620, 20 * 30, 100, 25, 0.9)
+      new EnemyDisplay(620, 20 * 30, 100, 25, 'rgba(255,0,0,1)')
     }
 
   }
@@ -162,20 +161,20 @@ enemiesDisplay = []
 
 class EnemyDisplay {
 
-  constructor(x, y, width, height, opacity) {
+  constructor(x, y, width, height, rgba) {
 
     this.x = x
     this.y = y
     this.width = width
     this.height = height
-    this.opacity = opacity
+    this.rgba = rgba
     enemiesDisplay.push(this)
 
   }
 
   draw(i, name) {
     ctx.save()
-    box(this.x, this.y + i * 30, this.width, this.height, this.opacity)
+    box(this.x, this.y + i * 30, this.width, this.height, this.rgba)
     ctx.font = "16px Arial"
     ctx.fillText(name, 630, 40 + i * 30)
     ctx.restore()
@@ -203,3 +202,5 @@ function displayEnemies() {
 let antiHero = new Enemy(630, 230, 20, 10, 'Enemy 1')
 
 let antiHero1 = new Enemy(430, 130, 30, 5, 'Enemy 2')
+
+let antiHero2 = new Enemy(400, 80, 25, 5, 'Enemy 3')

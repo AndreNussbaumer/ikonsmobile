@@ -1,9 +1,5 @@
-
-
 function toggleFullscreen() {
-
   if (!document.fullscreenElement) {
-
     canvas.requestFullscreen().catch((err) => {
       alert(
         `Error attempting to enable fullscreen mode: ${err.message} (${err.name})`,
@@ -60,9 +56,9 @@ function healthBar(x, y, width, height, health, max_health) {
   ctx.fillRect(x, y,(health/max_health)*(width),height)
 }
 
-function box(x, y, width, height, opacity) {
+function box(x, y, width, height, color) {
   ctx.save()
-  ctx.fillStyle = 'rgba(0, 0, 0,' + opacity + ')'
+  ctx.fillStyle = color
   ctx.beginPath()
   ctx.rect(x, y, width, height)
   ctx.strokeStyle = 'white'
@@ -77,18 +73,27 @@ function box(x, y, width, height, opacity) {
 function enemyVisible() {
 
   for(let i = 0; i < enemies.length; i++){
+
     let enemy = enemies[i]
-    if(enemy.visible){
+
+    if(enemy.visible && !enemy.locked){
       ctx.save()
-      box(620, 20 + i * 30, 100, 25, 0.9)
+      box(620, 20 + i * 30, 100, 25, 'rgba(0,0,0,0.5)')
       ctx.font = "16px Arial"
       ctx.fillText(enemy.name, 630, 40 + i * 30)
-      if(clickInside(620, 100, 20 + i * 30, 25)){
-        justTest()
-      }
+      ctx.restore()
+    } else if(enemy.visible && enemy.locked){
+      ctx.save()
+      box(620, 20 + i * 30, 100, 25, 'rgba(0,0,255,1)')
+      ctx.font = "16px Arial"
+      ctx.fillText(enemy.name, 630, 40 + i * 30)
       ctx.restore()
     }
   }
+}
+
+function changeLockedTarget() {
+
 }
 
 function justTest() {
