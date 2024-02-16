@@ -144,9 +144,8 @@ class Ikon {
 
   lockingTarget() {
 
-    let lockedEnemy = enemies.find(enemy => enemy.locked)
-    let visibleEnemy = enemies.find(enemy => enemy.visible)
 
+    /*
     enemies.forEach((enemy, i) => {
       if(visibleEnemy){
         if(getDistanceObj(this, enemy) < 400 && !enemy.locked && lockedEnemy == undefined){
@@ -154,6 +153,19 @@ class Ikon {
         }
       }
     })
+*/
+    for(let i = 0; i < enemies.length; i++){
+
+      let lockedEnemy = enemies.find(enemy => enemy.locked)
+
+      let enemy = enemies[i]
+
+      if(enemy.visible){
+        if(!lockedEnemy){
+          enemy.locked = true
+        }
+      }
+    }
   }
 
 

@@ -5,6 +5,9 @@ let angle = 0
 let mobileX
 let mobileY
 
+canvas.width = screen.width
+canvas.height = screen.height
+
 // KEYBOARD
 
 canvas.addEventListener('keydown', (e) => {
@@ -205,16 +208,22 @@ canvas.addEventListener('touchstart', (e) => {
       Hero.shooting = true
     }
 
-    enemies.forEach((enemy) => {
+    for(let i = 0; i < enemies.length; i++){
 
-      if(getDistance(enemy.pos) < enemy.r){
-        if(enemy.locked){
-          enemy.locked = false
-        } else {
-          enemy.locked = true
+      let enemy = enemies[i]
+
+      let lockedEnemy = enemies.find(enemy => enemy.locked)
+
+
+      if(enemy.visible){
+        if(clickInside(620, 100, 20 + i * 30, 25)){
+          if(!enemy.locked){
+            enemy.locked = true
+            lockedEnemy.locked = false
+          }
         }
       }
-    })
+    }
 
   }
 
@@ -222,22 +231,7 @@ canvas.addEventListener('touchstart', (e) => {
 
 canvas.addEventListener('click', (e) => {
 
-  for(let i = 0; i < enemies.length; i++){
 
-    let enemy = enemies[i]
-
-    let lockedEnemy = enemies.find(enemy => enemy.locked)
-
-
-    if(enemy.visible){
-      if(clickInside(620, 100, 20 + i * 30, 25)){
-        if(!enemy.locked){
-          enemy.locked = true
-          lockedEnemy.locked = false
-        }
-      }
-    }
-  }
 })
 
 canvas.addEventListener('touchmove', (e) => {
