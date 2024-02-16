@@ -190,17 +190,37 @@ canvas.addEventListener('touchstart', (e) => {
   if(e.touches){
     if(e.touches[0]){
       if(e.touches[1]){
+
           mobileX = e.touches[1].clientX
           mobileY = e.touches[1].clientY
+          // SHOOTING
           if(getDistance(mobileButtons) < 50){
             Hero.shooting = true
           }
+          // CHANGING LOCKS
+          for(let i = 0; i < enemies.length; i++){
+
+            let enemy = enemies[i]
+
+            let lockedEnemy = enemies.find(enemy => enemy.locked)
+
+            if(enemy.visible){
+              if(clickInside(620, 100, 20 + i * 30, 25)){
+                if(!enemy.locked){
+                  enemy.locked = true
+                  lockedEnemy.locked = false
+                }
+              }
+            }
+          }
+
       }
     }
   }
 
 
   if(e.touches[0].clientX > screen.width / 2 ){
+
     mobileX = e.touches[0].clientX
     mobileY = e.touches[0].clientY
 
@@ -211,9 +231,8 @@ canvas.addEventListener('touchstart', (e) => {
     for(let i = 0; i < enemies.length; i++){
 
       let enemy = enemies[i]
-
+      
       let lockedEnemy = enemies.find(enemy => enemy.locked)
-
 
       if(enemy.visible){
         if(clickInside(620, 100, 20 + i * 30, 25)){
@@ -224,6 +243,7 @@ canvas.addEventListener('touchstart', (e) => {
         }
       }
     }
+
 
   }
 
