@@ -223,17 +223,14 @@ canvas.addEventListener('touchstart', (e) => {
 
     mobileX = e.touches[0].clientX
     mobileY = e.touches[0].clientY
-
+    // SHOOTING
     if(getDistance(mobileButtons) < 50){
       Hero.shooting = true
     }
-
+    // CHANGING LOCKS
     for(let i = 0; i < enemies.length; i++){
-
       let enemy = enemies[i]
-      
       let lockedEnemy = enemies.find(enemy => enemy.locked)
-
       if(enemy.visible){
         if(clickInside(620, 100, 20 + i * 30, 25)){
           if(!enemy.locked){
@@ -243,27 +240,21 @@ canvas.addEventListener('touchstart', (e) => {
         }
       }
     }
-
-
   }
-
 })
 
 canvas.addEventListener('click', (e) => {
-
-
 })
 
 canvas.addEventListener('touchmove', (e) => {
 
   if(e.changedTouches[0].clientX < screen.width / 2){
-
+    
     joystick.x = e.changedTouches[0].clientX
     joystick.y = e.changedTouches[0].clientY
 
     boundingCircle()
   }
-
 })
 
 canvas.addEventListener('touchend', (e) => {
