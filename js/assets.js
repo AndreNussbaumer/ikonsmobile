@@ -3,6 +3,7 @@ const topIkon = new Image()
 topIkon.src = "images/junkarmortop.png"
 
 
+
 let sprites = {}
 let assetsStillLoading = 0
 

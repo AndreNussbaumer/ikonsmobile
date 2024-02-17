@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>The Ikons Mobile Game</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" media="screen and (min-device-width:1920px)" href="css/desktop.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap" rel="stylesheet">
   </head>
@@ -13,10 +14,12 @@
     <div id="background">
       <video id="banner" src="images/banner.mp4" type="video/mp4" width="740" height="360" autoplay muted loop/>
     </div>
+
     <div id="horizontalOnly">
       <img id="logo" src='images/logo.png'>
       <p id="press"> Turn your device horizontally </p>
     </div>
+
     <div id="pressToPlay" onClick='toggleFullscreen()'>
       <img id="logo" src='images/logo.png'>
       <p id="press"> Press to Play </p>
@@ -25,6 +28,13 @@
     <p id="loadingText">
       Loading
     </p>
+
+    <div id="desktop">
+      <img id="logoDesktop" src='images/logo.png'>
+      <p id="notSupported">
+        This game isn't currently supported on PC
+      </p>
+    </div>
 
     <canvas id="canvas" width="740" height="360" tabindex='1'></canvas>
 
