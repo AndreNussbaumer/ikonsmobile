@@ -249,7 +249,7 @@ canvas.addEventListener('click', (e) => {
 canvas.addEventListener('touchmove', (e) => {
 
   if(e.changedTouches[0].clientX < screen.width / 2){
-    
+
     joystick.x = e.changedTouches[0].clientX
     joystick.y = e.changedTouches[0].clientY
 
@@ -319,6 +319,12 @@ screen.orientation.addEventListener("change", (e) => {
 
   mobileButtons.x = canvas.width / 1.12
   mobileButtons.y = canvas.height / 1.25
+
+  joystick.x = canvas.width / 9
+  joystick.y = canvas.height / 1.2
+
+  joystick.X = canvas.width / 9
+  joystick.Y = canvas.height / 1.2
 
 })
 
